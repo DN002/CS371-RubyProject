@@ -1,5 +1,9 @@
 # README
 
+test project:
+in the terminal: rails s
+go to browser: http://localhost:3000
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
