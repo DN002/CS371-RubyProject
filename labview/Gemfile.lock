@@ -88,6 +88,9 @@ GEM
       irb (>= 1.5.0)
       reline (>= 0.3.1)
     erubi (1.12.0)
+    ffi (1.15.5)
+    ffi-win32-extensions (1.0.4)
+      ffi
     globalid (1.1.0)
       activesupport (>= 5.0)
     i18n (1.12.0)
@@ -118,6 +121,7 @@ GEM
     net-imap (0.3.4)
       date
       net-protocol
+    net-ping (2.0.8)
     net-pop (0.1.2)
       net-protocol
     net-protocol (0.2.1)
@@ -203,6 +207,9 @@ GEM
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    win32-security (0.5.0)
+      ffi
+      ffi-win32-extensions
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.6.7)
@@ -216,6 +223,7 @@ DEPENDENCIES
   debug
   importmap-rails
   jbuilder
+  net-ping
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.3)
   selenium-webdriver
@@ -226,6 +234,7 @@ DEPENDENCIES
   tzinfo-data
   web-console
   webdrivers
+  win32-security
 
 RUBY VERSION
    ruby 3.2.2p53
