@@ -11,16 +11,40 @@
 
 <!--Tabular view all -->
 
-<% columns = 3 %>
+<style>
+  .cell {
+    border: 1px solid black;
+  }
+</style>
+
+<style>
+  .cell-up {
+    background-color: green;
+    border: 1px solid black;
+  }
+  .cell-down {
+    background-color: red;
+    border: 1px solid black;
+  }
+</style>
+
+<% columns = 6 %>
 <% col = 1 %>
 
 <table>
   <% @entries.each do |entry| %>
-    <tr>
-      <td><%= entry.hostname %></td>
-      <td><%= entry.status %></td>
-    </tr>
+    <% if col == 1 %>
+      <tr>
+    <% end %>
+      <% cell_class = entry.status == 'down' ? 'cell-down' : 'cell-up' %>
+      <td class="<%= cell_class %>"><%= entry.hostname %></td>
+      <% col += 1 %>
+    <% if col == columns + 1 %>
+      </tr>
+      <% col = 1 %>
+    <% end %>
   <% end %>
 </table>
 
+<%= link_to "Add New Entry", new_entry_path%>
 <%= link_to "Manage Computers", entries_path %>

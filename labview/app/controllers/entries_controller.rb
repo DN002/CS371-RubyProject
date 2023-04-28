@@ -2,6 +2,9 @@
 require 'net/ping'
 include Net
 
+# James A., s1032252
+# Chris A.
+
 class EntriesController < ApplicationController
   before_action :set_entry, only: %i[ show edit update destroy ]
   
@@ -16,32 +19,31 @@ class EntriesController < ApplicationController
     # Entry contents change at random based on the value of rand.round (0 or 1):
     @entries.each do |entry|
 
-      host = "dummy"
+      host = entry.hostname
 
       pe = Net::Ping::External.new(host)
       pe.timeout = 1 # Reduce ping timeout to reduce runtime (SP23)
-      status = true
+      status = "up"
 
-      # if pe.ping?
-      #   puts "External ping successful"
-      #   status = true
-      # else
-      #   puts "External ping unsuccessful"
-      #   status = false
-      # end
+      if pe.ping?
+        puts "External ping successful"
+        status = "up"
+      else
+        puts "External ping unsuccessful"
+        status = "down"
+      end
       
-      # pe.host = "rockhopper" # New hostname to ping (SP23)
+      pe.host = "rockhopper" # New hostname to ping (SP23)
       
-      # if pe.ping?
-      #   puts "External ping successful"
-      #   status = true
-      # else
-      #   puts "External ping unsuccessful"
-      #   status = false
-      # end
+      if pe.ping?
+        puts "External ping successful"
+        status = "up"
+      else
+        puts "External ping unsuccessful"
+        status = "down"
+      end
 
-      # entry.content = status
-      # entry.content = "Today was GREAT!"
+      entry.status = status
       
       entry.save
     end
