@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<h3>Listing Computers</h3>
+
+<ul>
+  <% @entries.each do |entry| %>
+    <li>
+      <strong>Hostname:</strong> <%= entry.hostname %><br>
+      <strong>Status:</strong> <%= entry.status %><br>
+      <%= link_to "Show", entry_path(entry) %> |
+      <%= link_to "Edit", edit_entry_path(entry) %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Add Computer", new_entry_path %>

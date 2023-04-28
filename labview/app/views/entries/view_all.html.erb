@@ -1,0 +1,26 @@
+
+<h3 class="indented"> Labview </h3>
+<p class="indented"> &nbsp; HH 305 &nbsp;&nbsp;&nbsp; <%= Time.now.strftime("%-m/%e/%Y") %> 
+    &nbsp;&nbsp;&nbsp; <%= Time.now.strftime("%l:%M %p") %></p>
+
+<style>
+  .indented {
+    padding-left: 40px; /* adjust the value as needed */
+  }
+</style>
+
+<!--Tabular view all -->
+
+<% columns = 3 %>
+<% col = 1 %>
+
+<table>
+  <% @entries.each do |entry| %>
+    <tr>
+      <td><%= entry.hostname %></td>
+      <td><%= entry.status %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to "Manage Computers", entries_path %>
