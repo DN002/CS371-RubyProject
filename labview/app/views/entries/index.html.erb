@@ -9,6 +9,7 @@
       <strong>Status:</strong> <%= entry.status %><br>
       <%= link_to "Show", entry_path(entry) %> |
       <%= link_to "Edit", edit_entry_path(entry) %>
+      <%= link_to "Destroy", entry_path(entry), method: :delete %>
     </li>
   <% end %>
 </ul>
