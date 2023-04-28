@@ -19,31 +19,64 @@
 
 <style>
   .cell-up {
-    background-color: green;
+    background-color: lightgreen;
     border: 1px solid black;
   }
   .cell-down {
-    background-color: red;
+    background-color: lightcoral;
     border: 1px solid black;
   }
 </style>
 
-<% columns = 6 %>
+<% columns = 8 %>
 <% col = 1 %>
 
+<style>
+  .blank-row {
+    height: 20px;
+  }
+  .cell-up, .cell-down {
+    padding: 1px;
+  }
+</style>
 <table>
-  <% @entries.each do |entry| %>
+  <tr>
+    <td colspan="8"></td>
+  </tr>
+  <tr>
+    <td class="blank-col"></td>
+    <td class="blank-col"></td>
+    <td colspan="4" class="cell-up"><%= @entries.first.hostname %></td>
+    <td class="blank-col"></td>
+    <td class="blank-col"></td>
+  </tr>
+  <tr>
+    <td colspan="8"></td>
+  </tr>
+  <% @entries[1..].each do |entry| %>
     <% if col == 1 %>
+      <tr class="blank-row">
+        <td colspan="8"></td>
+      </tr>
       <tr>
     <% end %>
       <% cell_class = entry.status == 'down' ? 'cell-down' : 'cell-up' %>
+      <td class="blank-col"></td>
+      <td class="blank-col"></td>
       <td class="<%= cell_class %>"><%= entry.hostname %></td>
+      <td class="blank-col"></td>
+      <td class="blank-col"></td>
       <% col += 1 %>
     <% if col == columns + 1 %>
+      <td class="blank-col"></td>
+      <td class="blank-col"></td>
       </tr>
       <% col = 1 %>
     <% end %>
   <% end %>
+  <tr class="blank-row">
+    <td colspan="8"></td>
+  </tr>
 </table>
 
 <%= link_to "Add New Entry", new_entry_path%>

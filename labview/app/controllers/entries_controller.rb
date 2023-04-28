@@ -32,16 +32,6 @@ class EntriesController < ApplicationController
         puts "External ping unsuccessful"
         status = "down"
       end
-      
-      pe.host = "rockhopper" # New hostname to ping (SP23)
-      
-      if pe.ping?
-        puts "External ping successful"
-        status = "up"
-      else
-        puts "External ping unsuccessful"
-        status = "down"
-      end
 
       entry.status = status
       
